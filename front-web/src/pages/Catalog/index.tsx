@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ProductsResponse } from 'core/types/Product';
+import Pagination from 'core/components/Pagination';
 import { makerequest } from 'core/Utils/request';
 import ProductCard from './components/ProductCard';
 import ProductCardLoader from './components/Loaders/ProductCardLoader';
@@ -10,12 +11,13 @@ const Catalog = () =>  {
 
    const [productsResponse, setProductResponse] = useState<ProductsResponse>();
    const [isLoading, setIsLoading] = useState(false);
+   const [activePage, setActivePage] = useState(0);
 
    console.log(productsResponse);
    
    useEffect(() => {
       const params = {
-         page: 0,
+         page: activePage,
          linesPerPage: 12
       }
       
@@ -25,7 +27,7 @@ const Catalog = () =>  {
       .finally(() => {
       setIsLoading(false);
       })
-   }, []);
+   }, [activePage]);
       
    return (
       <div className="catalog-container">
@@ -41,6 +43,13 @@ const Catalog = () =>  {
                ))
             )}              
          </div>
+        {productsResponse && (
+        <Pagination 
+        totalPages={productsResponse.totalPages}
+        activePage={activePage}
+        onChange={page => setActivePage(page)}
+        />
+        )}
       </div>
    );
 }
