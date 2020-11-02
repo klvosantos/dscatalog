@@ -21,12 +21,15 @@ public class AppConfig {
 	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {
 		JwtAccessTokenConverter tokenConverter = new JwtAccessTokenConverter();
-		tokenConverter.setSigningKey(jwtSecret);
+		tokenConverter.setSigningKey(jwtSecret); // registraa assinatura no token(segredo que é embaralhado junto com o token)
 		return tokenConverter;
 	}
 
 	@Bean
 	public JwtTokenStore tokenStore() {
 		return new JwtTokenStore(accessTokenConverter());
+		
 	}
 }
+
+//JwtAccessTokenConverter e JwtTokenStore Objetos que serão capazes de acessar um token jwt(Ler, decodificar, criar codificando) 
