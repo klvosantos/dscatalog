@@ -1,6 +1,5 @@
 import BaseForm from 'core/components/BaseForm';
 import { makerequest } from 'core/Utils/request';
-import { type } from 'os';
 import React, { useState } from 'react';
 import './styles.scss';
 
@@ -11,7 +10,7 @@ type FormState = {
     description: string;
 }
 
-type FormEvent =  React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>;
+type FormEvent = React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>;
 
 const Form = () => {
     const [formData, setFormData] = useState<FormState>({
@@ -21,7 +20,7 @@ const Form = () => {
         description: ''
     });
 
-    const handleOnChange = (event:FormEvent) => {
+    const handleOnChange = (event: FormEvent) => {
         const name = event.target.name;
         const value = event.target.value;
 
@@ -33,12 +32,12 @@ const Form = () => {
         const payload = {
             ...formData,
             imgUrl: 'https://a-static.mlcdn.com.br/210x210/controle-xbox-one-com-cabo-usb/tribosgames/dbb193acbd2411eabcb74201ac18501e/0bcea9d9be105d20365297ec7503e644.jpg',
-            categories: [{ id: formData.category}]
+            categories: [{ id: formData.category }]
         }
 
         makerequest({ url: '/products', method: 'POST', data: payload })
             .then(() => {
-                setFormData({name: '', category: '', price: '', description: ''});
+                setFormData({ name: '', category: '', price: '', description: '' });
             })
     }
 
@@ -75,8 +74,8 @@ const Form = () => {
                         />
                     </div>
                     <div className="col-6">
-                        <textarea 
-                            name="description" 
+                        <textarea
+                            name="description"
                             value={formData.description}
                             onChange={handleOnChange}
                             className="form-control"
