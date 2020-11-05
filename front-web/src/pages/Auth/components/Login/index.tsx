@@ -1,10 +1,11 @@
 import ButtonIcon from 'core/components/ButtonIcon';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import React, { useState } from 'react';
 import AuthCard from '../Card';
 import './styles.scss';
 import { makeLogin } from 'core/Utils/request';
+import { saveSessionData } from 'core/Utils/auth';
 
 type FormData = {    // tipo de dados que serao enviados para a api
     username: string;
@@ -14,11 +15,14 @@ type FormData = {    // tipo de dados que serao enviados para a api
 const Login = () => {
    const { register, handleSubmit} = useForm<FormData>(); // tipo o useForm com o FormData(fazendo isso o react hook form integra com o typescript) e quando o formulario for submetido ele seguira o modelo de dados estabelecido no FormData
    const [hasError, setHasError] = useState(false );
+   const history = useHistory();
 
    const onSubmit = (data: FormData) => {
       makeLogin(data)
       .then(response => {
          setHasError(false);
+         saveSessionData(response.data);
+         history.push('/admin');
       })
       .catch(() => {
          setHasError(true);
