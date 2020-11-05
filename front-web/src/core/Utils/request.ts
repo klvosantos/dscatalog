@@ -15,7 +15,7 @@ type LoginData = {
   password: string;
 }
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'http://localhost:8080';
 
 export const makerequest = ({ method = 'GET', url, data, params, headers }: RequestParams) => {
   return axios ({
@@ -35,9 +35,7 @@ export const makerequest = ({ method = 'GET', url, data, params, headers }: Requ
     'Content-Type': 'application/x-www-form-urlencoded'
   }
 
-  const payload = qs.stringify({...LoginData, grant_type: 'passord'});
+  const payload = qs.stringify({...LoginData, grant_type: 'password'});
 
-  return makerequest({ url: '/oauth/token', data: payload, method: 'POST', headers }) 
-
-
+  return makerequest({ url: '/oauth/token', data: payload, method: 'POST', headers })
 }
