@@ -1,6 +1,6 @@
 import axios, { Method } from 'axios';
 import qs from 'qs';
-import { CLIENT_ID, CLIENT_SECRET } from './auth';
+import { CLIENT_ID, CLIENT_SECRET, getSessionData } from './auth';
 
 type RequestParams = {
     method?: Method;
@@ -17,7 +17,7 @@ type LoginData = {
 
 const BASE_URL = 'http://localhost:8080';
 
-export const makerequest = ({ method = 'GET', url, data, params, headers }: RequestParams) => {
+export const makerequest = ({ method = 'GET', url, data, params, headers }: RequestParams) => { // jeito mais basico de fazer uma requisição http
   return axios ({
     method,
     url: `${BASE_URL}${url}`,
@@ -25,6 +25,16 @@ export const makerequest = ({ method = 'GET', url, data, params, headers }: Requ
     params,
     headers
   });
+}
+
+export const makePrivateRequest = ({ method = 'GET', url, data, params }: RequestParams) => { // Envia o token junto na requisição para cadastrar um produto etc..
+  const sessionData = getSessionData();
+
+  const headers = {
+    'Authorization': `Bearer ${sessionData.access_token}` 
+  }
+
+  return makerequest({ method, url, data, params, headers })
 }
 
  export const makeLogin = (LoginData: LoginData) => { // items que serao enviados na requisição (header)da api
