@@ -1,5 +1,5 @@
 import ButtonIcon from 'core/components/ButtonIcon';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import React, { useState } from 'react';
 import AuthCard from '../Card';
@@ -12,17 +12,24 @@ type FormData = {    // tipo de dados que serao enviados para a api
     password: string;
 }
 
+type LocalState = {
+   from: string;
+}
+
 const Login = () => {
    const { register, handleSubmit, errors } = useForm<FormData>(); // tipo o useForm com o FormData(fazendo isso o react hook form integra com o typescript) e quando o formulario for submetido ele seguira o modelo de dados estabelecido no FormData
    const [hasError, setHasError] = useState(false );
    const history = useHistory();
+   const location = useLocation<LocalState>();
+
+   const { from } = location.state || { from: { pathname: "/admin" } }; // location.state vale a rota que o usuario gostaria de ir, caso não exista ele redireciona para /admin
 
    const onSubmit = (data: FormData) => {
       makeLogin(data)
       .then(response => {
          setHasError(false);
          saveSessionData(response.data);
-         history.push('/admin');
+         history.replace(from); // limpa um item da pilha de navegação. // Quando o login é autenticado com sucesso, se o usuario escolher voltar uma pagina, ele é direcionado para a pagina anterior a tentativa de login(pois agora o usuario esta logado, assim nao havendo necessidade de ser direcionado para a tela de login novamente).   
       })
       .catch(() => {
          setHasError(true);

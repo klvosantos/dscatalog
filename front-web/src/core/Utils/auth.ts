@@ -41,11 +41,7 @@ export const getAccessTokenDecoded = () => {
 export const isTokenValid = () => {
     const { exp } = getAccessTokenDecoded();
 
-    if (Date.now() <= exp * 1000) {  // 1000 pois o Date.now() retorna um numero que é multiplicado por 1000, o exp precisa estar no mesmo formato
-        return true;
-    }
-
-    return false;
+    return Date.now() <= exp * 1000 // 1000 pois o Date.now()(milisegundos) retorna um numero que é multiplicado por 1000, o exp(segundos) precisa estar na mesma unidade, ou seja converter o exp para milisegundos. 
 }
 
 export const isAuthenticated = () => {
