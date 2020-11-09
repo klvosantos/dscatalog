@@ -1,28 +1,36 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { isAuthenticated } from 'core/Utils/auth';
+import { isAllowedByRole, isAuthenticated, Role } from 'core/Utils/auth';
 
 type Props = {
     children: React.ReactNode;
     path: string;
+    allowedRoutes?: Role[];
 }
 
-const PrivateRoute = ({ children, path }: Props) => { // componente que renderiza o children caso o usuario esteja logado, redirecina para login caso não esteja
+const PrivateRoute = ({ children, path, allowedRoutes }: Props) => { // componente que renderiza o children caso o usuario esteja logado, redirecina para login caso não esteja
   return (
      <Route
         path={path}
-        render={({ location }) =>
-        isAuthenticated() ? (
-          children
-          ) : (
-          <Redirect
-            to={{
-              pathname: "/admin/auth/login",
-              state: { from: location }
-            }}
-          />
-         )
-        }
+        render={({ location }) => {
+          if (!isAuthenticated()) {
+            return (
+              <Redirect
+                to={{
+                pathname: "/admin/auth/login",
+                state: { from: location }
+                }}
+              />
+            )    
+          } else if (isAuthenticated && !isAllowedByRole(allowedRoutes)) {
+            return (
+              <Redirect to={{ pathname: "/admin" }}
+              />
+            )    
+          }
+
+          return children;
+        }}
      />
   );
 }

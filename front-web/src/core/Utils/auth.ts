@@ -12,7 +12,7 @@ type LoginResponse = {
     userId: number
 }
 
-type Role = 'ROLE_OPERATOR' | 'ROLE_ADMIN';
+export type Role = 'ROLE_OPERATOR' | 'ROLE_ADMIN';
 
 type AccessToken = {
     exp: number;
@@ -53,4 +53,10 @@ export const isAuthenticated = () => {
     // e se "access_token" não esta expirado
 }
 
-  
+export const isAllowedByRole = (routeRoules: Role[] = []) => { // recebe uma lista de Role[] onde o padrão é um array vazio caso o usuario não passe nada, isso contrario acusaria erro de possivel valores undefined.
+    if (routeRoules.length === 0) {
+        return true;
+    }
+    
+    return false;
+}    
