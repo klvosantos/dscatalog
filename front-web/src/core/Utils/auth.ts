@@ -2,7 +2,6 @@ import jwtDecode from 'jwt-decode' // biblioteca que permite transformar a strin
 ;export const CLIENT_ID = 'dscatalog';
 export const CLIENT_SECRET = 'dscatalog123';
 
-
 type LoginResponse = {
     access_token: string,
     token_type: string,
@@ -57,6 +56,12 @@ export const isAllowedByRole = (routeRoules: Role[] = []) => { // recebe uma lis
     if (routeRoules.length === 0) {
         return true;
     }
+
+    const { authorities } = getAccessTokenDecoded();
     
-    return false;
+    return routeRoules.some(role => authorities.includes(role));
+
+    // some testa se ao menos um dos elementos no array passa no teste, retorna um valor true ou false.
+    // includes determina se um array contém um determinado elemento,
+    // verifica se existe pelo menos um perfil igual dentro do routeRoules e do authorities e retorna true/false
 }    

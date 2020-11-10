@@ -22,7 +22,7 @@ const PrivateRoute = ({ children, path, allowedRoutes }: Props) => { // componen
                 }}
               />
             )    
-          } else if (isAuthenticated && !isAllowedByRole(allowedRoutes)) {
+          } else if (isAuthenticated && !isAllowedByRole(allowedRoutes)) { // direciona para /admin caso esteja autenticado mas sem permissão de ver determinada rota
             return (
               <Redirect to={{ pathname: "/admin" }}
               />
