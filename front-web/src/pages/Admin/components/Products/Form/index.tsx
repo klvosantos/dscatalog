@@ -1,4 +1,4 @@
-import BaseForm from 'core/components/BaseForm';
+import BaseForm from 'pages/Admin/components/BaseForm';
 import React, { useState } from 'react';
 import { makePrivateRequest} from 'core/Utils/request';
 import './styles.scss';
