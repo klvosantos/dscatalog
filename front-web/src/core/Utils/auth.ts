@@ -1,5 +1,7 @@
-import jwtDecode from 'jwt-decode' // biblioteca que permite transformar a string do token(que fica no localStorage) em um objeto, assim possibilitando comparações, ex: verificar se o token esta expirado baseado na comparação entre a data do token com o Date.now()
-;export const CLIENT_ID = 'dscatalog';
+import jwtDecode from 'jwt-decode'; // biblioteca que permite transformar a string do token(que fica no localStorage) em um objeto, assim possibilitando comparações, ex: verificar se o token esta expirado baseado na comparação entre a data do token com o Date.now()
+import history from './history';
+
+export const CLIENT_ID = 'dscatalog';
 export const CLIENT_SECRET = 'dscatalog123';
 
 type LoginResponse = {
@@ -68,4 +70,9 @@ export const isAllowedByRole = (routeRoules: Role[] = []) => { // recebe uma lis
     // some testa se ao menos um dos elementos no array passa no teste, retorna um valor true ou false.
     // includes determina se um array contém um determinado elemento,
     // verifica se existe pelo menos um perfil igual dentro do routeRoules e do authorities e retorna true/false
-}    
+}
+
+export const logout = () => {
+    localStorage.removeItem('authData');
+    history.replace('/auth/login');   
+}
