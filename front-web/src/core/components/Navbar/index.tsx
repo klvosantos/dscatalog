@@ -5,15 +5,15 @@ import './styles.scss';
 
 const Navbar = () => {
    const [currentUser, setCurrentUser] = useState('');
-   const location = useLocation();
+   const location = useLocation(); // É acionado quando há interação nas rotas
 
    useEffect(() => {
       const currentUserData = getAccessTokenDecoded();
       setCurrentUser(currentUserData.user_name);
-   }, [location]);
-
+   }, [location]);  // Se o array de depêndencias for vazio, é executado somente quando o componente inicializa
+                    // useEffect depende do location, toda vez que location mudar acionara o useEffect executando o que estiver dentro da função  
    const handLogout  = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-      event.preventDefault();
+      event.preventDefault(); // interrompe o comportamento padrão do link que seria adicionar a #logout na rota do navegador 
       logout();
    }
 
@@ -44,11 +44,11 @@ const Navbar = () => {
             </ul>
          </div>
          <div className="col-3 text-right">
-            { currentUser && (
+            { currentUser && ( // Adicionado fragment <> </>, faz divisão logica, para evitar conflitos com o retorno de mais de uma tag root
             <>
               {currentUser}
               <a 
-              href="#logout" 
+              href="#logout"   // href nao tem nenuma ção aqui, apenas pela semantica
               className="nav-link active d-inline"
               onClick={handLogout}
               >
