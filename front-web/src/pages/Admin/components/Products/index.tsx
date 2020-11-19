@@ -10,11 +10,8 @@ const Products = () => {
                 <Route path="/admin/products" exact>
                     <List />
                 </Route>
-                <Route path="/admin/products/create">
+                <Route path="/admin/products/:produtoId"> {/*  Renderiza o formulario independente de criar ou editar um produto */}
                     <Form />
-                </Route>
-                <Route path="/admin/products/:produtoId">
-                    <h1>Editar um produto</h1>
                 </Route>
             </Switch>
         </div>
