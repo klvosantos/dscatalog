@@ -8,12 +8,9 @@ import ProductCardLoader from './components/Loaders/ProductCardLoader';
 import './styles.scss';
 
 const Catalog = () =>  {
-
    const [productsResponse, setProductResponse] = useState<ProductsResponse>();
    const [isLoading, setIsLoading] = useState(false);
    const [activePage, setActivePage] = useState(0);
-
-   console.log(productsResponse);
    
    useEffect(() => {
       const params = {
@@ -44,11 +41,11 @@ const Catalog = () =>  {
             )}              
          </div>
         {productsResponse && (
-        <Pagination 
-        totalPages={productsResponse.totalPages}
-        activePage={activePage}
-        onChange={page => setActivePage(page)}
-        />
+          <Pagination 
+             totalPages={productsResponse.totalPages}
+             activePage={activePage}
+             onChange={page => setActivePage(page)}
+          />
         )}
       </div>
    );
