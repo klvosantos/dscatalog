@@ -28,8 +28,6 @@ const List = () => {
      })
   }, [activePage]);
 
-    
-
     const handleCreate = () => {
         history.push('/admin/products/create');
     }
