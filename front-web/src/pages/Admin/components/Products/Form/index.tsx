@@ -1,11 +1,12 @@
 
-import React, { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useEffect, useState } from 'react';
+import { useForm, Controller } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import Select from 'react-select'
 import { makePrivateRequest, makerequest} from 'core/Utils/request';
 import { useHistory, useParams } from 'react-router-dom';
 import BaseForm from 'pages/Admin/components/BaseForm';
+import { Category } from 'core/types/Product';
 import './styles.scss';
 
 type FormState = {
@@ -13,22 +14,19 @@ type FormState = {
     price: string;
     description:string;
     imgUrl: string;
+    categories: Category[];
 }
 
 type ParamsType = {  //propriedade criada para tipar o useParams
     productId: string;
 }
 
-const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-];
-
 const Form = () => {
-    const { register, handleSubmit, errors, setValue } = useForm<FormState>();
+    const { register, handleSubmit, errors, setValue, control } = useForm<FormState>();
     const history = useHistory();
     const { productId } = useParams<ParamsType>(); // consegue capturar o id dinâmico da url
+    const [isLoadingCategories, setIsLoadingCategories] = useState(false);
+    const [categories, setCategories] = useState<Category[]>([]);
     const isEditing = productId !== 'create';
     const formTitle = isEditing ? 'Editar produto' : 'Cadastrar um produto';
 
@@ -40,9 +38,17 @@ const Form = () => {
                 setValue('price', response.data.price);
                 setValue('description', response.data.description);
                 setValue('imgUrl', response.data.imgUrl);
+                setValue('categories', response.data.categories);
             })
         }
-      }, [productId, isEditing, setValue]);
+    }, [productId, isEditing, setValue]);
+     
+    useEffect(() => {
+        setIsLoadingCategories(true);
+        makerequest({ url: '/categories' })
+        .then(response => setCategories(response.data.content))
+        .finally(() => setIsLoadingCategories(false));
+    }, []);  
 
     const onSubmit = (data: FormState ) => { 
       makePrivateRequest({
@@ -85,12 +91,24 @@ const Form = () => {
                         )}
                     </div>
                     <div className="margin-bottom-30">    
-                       <Select
-                         options={options}
-                         classNamePrefix="categories-select"
-                         placeholder="Categoria"
-                         isMulti
-                       />
+                        <Controller                   
+                          as={Select}  
+                          name="categories" // name igual ao campo recebido do backend
+                          rules={{ required: true }}  
+                          control={control}        // Integra o formulario com a lib de terceiro   
+                          isLoading={isLoadingCategories}
+                          options={categories}
+                          getOptionLabel={(option: Category) => option.name } // renderizado na tela
+                          getOptionValue={(option: Category) => String(option.id)}  // valor que é enviado para api     
+                          classNamePrefix="categories-select"
+                          placeholder="Categorias"
+                          isMulti
+                        />
+                        {errors.categories && (
+                          <div className="invalid-feedback d-block">
+                              Campo obrigatório
+                          </div>
+                        )}
                     </div>
                     <div className="margin-bottom-30">                        
                         <input
@@ -114,10 +132,10 @@ const Form = () => {
                             className="form-control input-base"
                             placeholder="Imagem do produto"
                         />
-                         {errors.imgUrl && (
-                        <div className="invalid-feedback d-block">
+                        {errors.imgUrl && (
+                          <div className="invalid-feedback d-block">
                             {errors.imgUrl.message}
-                        </div>
+                          </div>
                         )}
                     </div>       
                 </div>
