@@ -56,10 +56,10 @@ public class ProductService {
 
 	@Transactional
 	public ProductDTO update(Long id, ProductDTO dto) {
-		try {
-		Product entity = repository.getOne(id);
-		copyDtoToEntity(dto, entity);
-		entity = repository.save(entity);
+		try {									  // Processo de atualizar:
+		Product entity = repository.getOne(id);   // 1 - getOne, pega uma instancia do obj monitorado pela jpa
+		copyDtoToEntity(dto, entity);  			  // 2 - os dados são copiados para esta entidade monitorada
+		entity = repository.save(entity);		  // 3 - Depois é feito o save.
 		return new ProductDTO(entity);
 		}
 		catch (EntityNotFoundException e) {
