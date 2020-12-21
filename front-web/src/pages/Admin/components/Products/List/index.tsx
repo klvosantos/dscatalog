@@ -13,7 +13,7 @@ const List = () => {
   const [activePage, setActivePage] = useState(0);
   const history = useHistory();
 
-  const getProducts = useCallback(() => { // useCallback(usa tecnica de memorization) guarda em memoria os valorores da função getProducts, invocano o getProducts apenas se as dependencias sofrerem alterações em suas dependencias, no caso a activePage, useCallback evita de o componente ficar criando referencias para a função getProducts a tdo momento que o componente é rerenderizado.
+  const getProducts = useCallback(() => { 
     const params = {
       page: activePage,
       linesPerPage: 4,

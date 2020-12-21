@@ -17,14 +17,14 @@ type FormState = {
     categories: Category[];
 }
 
-type ParamsType = {  //propriedade criada para tipar o useParams
+type ParamsType = { 
     productId: string;
 }
 
 const Form = () => {
     const { register, handleSubmit, errors, setValue, control } = useForm<FormState>();
     const history = useHistory();
-    const { productId } = useParams<ParamsType>(); // consegue capturar o id dinâmico da url
+    const { productId } = useParams<ParamsType>(); 
     const [isLoadingCategories, setIsLoadingCategories] = useState(false);
     const [categories, setCategories] = useState<Category[]>([]);
     const isEditing = productId !== 'create';
@@ -34,7 +34,7 @@ const Form = () => {
         if(isEditing) {
             makerequest({ url: `/products/${productId}` })
             .then(response => {
-                setValue('name', response.data.name); // setValue() seta os valores do formulario dinamicamente com os dados que vem da api
+                setValue('name', response.data.name); 
                 setValue('price', response.data.price);
                 setValue('description', response.data.description);
                 setValue('imgUrl', response.data.imgUrl);
@@ -93,13 +93,13 @@ const Form = () => {
                     <div className="margin-bottom-30">    
                         <Controller                   
                           as={Select}  
-                          name="categories" // name igual ao campo recebido do backend
+                          name="categories" 
                           rules={{ required: true }}  
-                          control={control}        // Integra o formulario com a lib de terceiro   
+                          control={control}         
                           isLoading={isLoadingCategories}
                           options={categories}
-                          getOptionLabel={(option: Category) => option.name } // renderizado na tela
-                          getOptionValue={(option: Category) => String(option.id)}  // valor que é enviado para api     
+                          getOptionLabel={(option: Category) => option.name } 
+                          getOptionValue={(option: Category) => String(option.id)}    
                           classNamePrefix="categories-select"
                           placeholder="Categorias"
                           isMulti

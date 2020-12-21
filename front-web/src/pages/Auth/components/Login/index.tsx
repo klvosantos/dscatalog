@@ -7,7 +7,7 @@ import './styles.scss';
 import { makeLogin } from 'core/Utils/request';
 import { saveSessionData } from 'core/Utils/auth';
 
-type FormState = {    // tipo de dados que serao enviados para a api
+type FormState = {   
     username: string;
     password: string;
 }
@@ -17,19 +17,19 @@ type LocalState = {
 }
 
 const Login = () => {
-   const { register, handleSubmit, errors } = useForm<FormState>(); // tipo o useForm com o FormData(fazendo isso o react hook form integra com o typescript) e quando o formulario for submetido ele seguira o modelo de dados estabelecido no FormData
+   const { register, handleSubmit, errors } = useForm<FormState>(); 
    const [hasError, setHasError] = useState(false );
    const history = useHistory();
    const location = useLocation<LocalState>();
 
-   const { from } = location.state || { from: { pathname: "/admin" } }; // location.state vale a rota que o usuario gostaria de ir, caso não exista ele redireciona para /admin
+   const { from } = location.state || { from: { pathname: "/admin" } }; 
 
    const onSubmit = (data: FormState) => {
       makeLogin(data)
       .then(response => {
          setHasError(false);
          saveSessionData(response.data);
-         history.replace(from); // limpa um item da pilha de navegação. // Quando o login é autenticado com sucesso, se o usuario escolher voltar uma pagina, ele é direcionado para a pagina anterior a tentativa de login(pois agora o usuario esta logado, assim nao havendo necessidade de ser direcionado para a tela de login novamente).   
+         history.replace(from);
       })
       .catch(() => {
          setHasError(true);
@@ -81,7 +81,7 @@ const Login = () => {
               Esqueci a senha?
            </Link>
            <div className="login-submit">
-               <ButtonIcon text="Logar" /> {/*Como o botao esta dentro do formulario, quando for acionado ele submetera o formulario, e uma vez feito isso o react-hook-form (handleSubmit) ira capturar e tratar essa submissão*/}
+               <ButtonIcon text="Logar" /> 
            </div>
            <div className="text-center">
               <span className="not-registered">

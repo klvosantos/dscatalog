@@ -27,7 +27,7 @@ axios.interceptors.response.use(function (response) {
   return Promise.reject(error);
 });
 
-export const makerequest = ({ method = 'GET', url, data, params, headers }: RequestParams) => { // jeito mais basico de fazer uma requisição http
+export const makerequest = ({ method = 'GET', url, data, params, headers }: RequestParams) => { 
   return axios ({
     method,
     url: `${BASE_URL}${url}`,
@@ -37,7 +37,7 @@ export const makerequest = ({ method = 'GET', url, data, params, headers }: Requ
   });
 }
 
-export const makePrivateRequest = ({ method = 'GET', url, data, params }: RequestParams) => { // Envia o token junto na requisição para cadastrar um produto etc..
+export const makePrivateRequest = ({ method = 'GET', url, data, params }: RequestParams) => { 
   const sessionData = getSessionData();
 
   const headers = {
@@ -47,7 +47,7 @@ export const makePrivateRequest = ({ method = 'GET', url, data, params }: Reques
   return makerequest({ method, url, data, params, headers })
 }
 
- export const makeLogin = (LoginData: LoginData) => { // items que serao enviados na requisição (header)da api
+ export const makeLogin = (LoginData: LoginData) => { 
   const token = `${CLIENT_ID}:${CLIENT_SECRET}`;
 
   const headers = {

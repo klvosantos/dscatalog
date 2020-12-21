@@ -6,8 +6,7 @@ import './app.scss';
 import Routes from './Routes';
 
 const App = () => {
-  return (
-    // React.Fragment forma alternativa de declarar um fragment 
+  return (    
     <React.Fragment>   
       <Routes />
       <ToastContainer />

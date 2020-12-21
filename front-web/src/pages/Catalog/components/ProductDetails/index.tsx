@@ -8,7 +8,7 @@ import ProductDescriptionLoader from '../Loaders/ProductDescriptionLoader';
 import ProductInfoLoader from '../Loaders/ProductInfoLoader';
 import './styles.scss';
 
-type ParamsType = {  //propriedade criada para tipar o useParams
+type ParamsType = { 
   productId: string;
 }
 

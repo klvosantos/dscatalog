@@ -8,7 +8,7 @@ type Props = {
     allowedRoutes?: Role[];
 }
 
-const PrivateRoute = ({ children, path, allowedRoutes }: Props) => { // componente que renderiza o children caso o usuario esteja logado, redirecina para login caso não esteja
+const PrivateRoute = ({ children, path, allowedRoutes }: Props) => { 
   return (
      <Route
         path={path}
@@ -22,7 +22,7 @@ const PrivateRoute = ({ children, path, allowedRoutes }: Props) => { // componen
                 }}
               />
             )    
-          } else if (isAuthenticated && !isAllowedByRole(allowedRoutes)) { // direciona para /admin caso esteja autenticado mas sem permissão de ver determinada rota
+          } else if (isAuthenticated && !isAllowedByRole(allowedRoutes)) {
             return (
               <Redirect to={{ pathname: "/admin" }}
               />
