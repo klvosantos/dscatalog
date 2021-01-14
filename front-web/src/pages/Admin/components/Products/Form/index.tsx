@@ -51,7 +51,8 @@ const Form = () => {
     }, []);  
 
     const onSubmit = (data: FormState ) => { 
-      makePrivateRequest({
+      
+        makePrivateRequest({
           url: isEditing ? `/products/${productId}` : '/products',
           method: isEditing ? 'PUT' : 'POST',
           data
@@ -83,6 +84,7 @@ const Form = () => {
                             type="text"
                             className="form-control input-base"
                             placeholder="Nome do produto"
+                            data-testid="name"
                         />
                         {errors.name && (
                         <div className="invalid-feedback d-block">
@@ -90,7 +92,8 @@ const Form = () => {
                         </div>
                         )}
                     </div>
-                    <div className="margin-bottom-30">    
+                    <div className="margin-bottom-30"> 
+                        <label htmlFor="categories" className="d-none">Categorias</label>    
                         <Controller                   
                           as={Select}  
                           name="categories" 
@@ -102,6 +105,8 @@ const Form = () => {
                           getOptionValue={(option: Category) => String(option.id)}    
                           classNamePrefix="categories-select"
                           placeholder="Categorias"
+                          inputId="categories"
+                          defaultValues=""
                           isMulti
                         />
                         {errors.categories && (
@@ -117,6 +122,7 @@ const Form = () => {
                             type="number"
                             className="form-control input-base"
                             placeholder="Preço"
+                            data-testid="price"
                         />
                         {errors.price && (
                         <div className="invalid-feedback d-block">
@@ -131,6 +137,7 @@ const Form = () => {
                             type="text"
                             className="form-control input-base"
                             placeholder="Imagem do produto"
+                            data-testid="imgUrl"
                         />
                         {errors.imgUrl && (
                           <div className="invalid-feedback d-block">
@@ -147,6 +154,7 @@ const Form = () => {
                         placeholder="Descrição"
                         cols={30}
                         rows={10}
+                        data-testid="description"
                     />
                      {errors.description && (
                     <div className="invalid-feedback d-block">

@@ -17,11 +17,11 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
-test('should render ProductCard', async () => {
+test('should render Catalog', async () => {
 
     render(
         <Router history={history}>
-            <Catalog />
+            <Catalog />  
         </Router>
     );
 
@@ -33,7 +33,5 @@ test('should render ProductCard', async () => {
     expect(screen.getByText('PC Gamer')).toBeInTheDocument();
     expect(screen.getByText('1')).toBeInTheDocument();
     expect(screen.getByText('2')).toBeInTheDocument();
-    expect(screen.queryAllByTitle('Loading...')).toHaveLength(0); 
-
-
+    expect(screen.queryAllByTitle('Loading...')).toHaveLength(0);
 });
