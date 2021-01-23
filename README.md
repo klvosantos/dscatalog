@@ -1,11 +1,10 @@
 # DS Catalog
-[![NPM](https://img.shields.io/npm/l/react)](https://github.com/klvosantos/dsdeliver-sds2/blob/main/LICENSE) 
 
 # Sobre o projeto
 
-https://sds2-marcelo.netlify.app
+https://marcelo-dscatalog.netlify.app
 
-DS Catalog é uma aplicação full stack web e mobile de catálogo de produtos, categorias e usuários com seus perfis. Aplicação é estruturada em camadas(controller, service, repository) entidades e funcionalidades de CRUD, paginação de dados, pesquisa com vários parâmetros, autenticação  e autorização, testes unitarios e de integração no back end e front end, documentação etc. Utilizando boas praticas e princípios SOLID.
+DS Catalog é uma aplicação full stack web e mobile de catálogo de produtos, categorias e usuários com seus perfis. Aplicação é um dos projetos do bootcamp [DevSuperior](https://devsuperior.com.br "Site da DevSuperior") estruturada em camadas(controller, service, repository) entidades e funcionalidades de CRUD, paginação de dados, pesquisa com vários parâmetros, autenticação  e autorização, testes unitarios e de integração no back end e front end, documentação etc. Utilizando boas praticas e princípios SOLID.
 
 ## Layout mobile de algumas das telas implantadas
 ![Mobile 1](https://github.com/klvosantos/assets/blob/main/dscatalog/grid%201.jpg)
@@ -19,6 +18,9 @@ DS Catalog é uma aplicação full stack web e mobile de catálogo de produtos, 
 
 ## Modelo conceitual
 ![Modelo Conceitual](https://github.com/klvosantos/assets/blob/main/dscatalog/modelo%20conceitual.jpg)
+
+## Rotas
+![Modelo Conceitual](https://github.com/klvosantos/assets/blob/main/dscatalog/rotas.jpg)
 
 # Tecnologias utilizadas
 ## Back end
@@ -57,7 +59,7 @@ Pré-requisitos: Java 11
 
 ```bash
 # clonar repositório
-git clone https://github.com/klvosantos/sds1
+git clone https://github.com/klvosantos/dscatalog
 
 # entrar na pasta do projeto back end
 cd backend
@@ -82,6 +84,12 @@ yarn install
 # executar o projeto
 yarn start
 ```
+
+## usuários para teste de login e acesso arotas privadas
+Perfil operacional: alex@gmail.com pwd:123456
+
+Perfil Admin: maria@gmail.com pwd:123456
+
 
 # Autor
 
