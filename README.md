@@ -4,7 +4,7 @@
 
 https://marcelo-dscatalog.netlify.app
 
-DS Catalog é uma aplicação full stack web e mobile de catálogo de produtos, categorias e usuários com seus perfis. Aplicação é um dos projetos do bootcamp [DevSuperior](https://devsuperior.com.br "Site da DevSuperior") estruturada em camadas(controller, service, repository) entidades e funcionalidades de CRUD, paginação de dados, pesquisa com vários parâmetros, autenticação  e autorização, testes unitarios e de integração no back end e front end, documentação etc. Utilizando boas praticas e princípios SOLID.
+DS Catalog é uma aplicação full stack web e mobile de catálogo de produtos, categorias e usuários com seus perfis. Aplicação é um dos projetos do bootcamp [DevSuperior](https://devsuperior.com.br "Site da DevSuperior") é estruturada em camadas(resource, service, repository) entidades e funcionalidades de CRUD, paginação de dados, pesquisa com vários parâmetros, autenticação e autorização, testes unitarios e de integração no back end e front end, documentação etc. Utilizando boas praticas e princípios SOLID.
 
 ## Layout mobile de algumas das telas implantadas
 ![Mobile 1](https://github.com/klvosantos/assets/blob/main/dscatalog/grid%201.jpg)
