@@ -4,12 +4,13 @@ const colors = {
     white: "#FFF",
     lightGray: "#F2F2F2",
     mediumGray: "#9E9E9E",
+    borderGray: "#E1E1E1",
     darkGrey: "#263238",
     black: "#000000",
     primary: "#407BEE",
     secondary: "#335698",
-    bluePill:"#407BFF61",
-    red:"#DF5753"
+    bluePill: "#407BFF61",
+    red: "#DF5753"
 }
 
 const text = StyleSheet.create({
@@ -17,7 +18,7 @@ const text = StyleSheet.create({
         fontSize: 16,
         fontWeight: "400",
         textAlign: "center",
-        color: colors.mediumGray        
+        color: colors.mediumGray
     },
     bold: {
         fontSize: 26,
@@ -60,13 +61,13 @@ const theme = StyleSheet.create({
         alignItems: "center",
         padding: 20
     },
-    
+
     card: {
         width: "100%",
         height: "100%",
-        backgroundColor: colors.white, 
+        backgroundColor: colors.white,
         borderRadius: 20,
-        shadowColor: colors.black,       
+        shadowColor: colors.black,
         shadowOffset: {
             width: 0,
             height: 2
@@ -83,14 +84,14 @@ const theme = StyleSheet.create({
     },
 
 
-    textContainer: {        
+    textContainer: {
         paddingHorizontal: 20
-    },        
+    },
     primaryButton: {
         width: 290,
         height: 50,
         backgroundColor: colors.primary,
-        borderRadius:10,
+        borderRadius: 10,
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center"
@@ -103,18 +104,20 @@ const theme = StyleSheet.create({
         borderBottomRightRadius: 10,
         alignItems: "center",
         justifyContent: "center"
-        
+
     },
+
+    // Product card
 
     ScrollContainer: {
         padding: 10
     },
 
     productCard: {
-
         width: "100%",
-        backgroundColor: colors.white,        
-        shadowColor: colors.black,       
+        backgroundColor: colors.white,
+        borderRadius: 10,
+        shadowColor: colors.black,
         shadowOffset: {
             width: 0,
             height: 2
@@ -133,9 +136,35 @@ const theme = StyleSheet.create({
         borderTopWidth: 1,
     },
 
-    priceContainer:{
+    priceContainer: {
         flexDirection: "row",
-        marginTop:10,
+        marginTop: 10,
+    },
+
+    // search Input
+
+    inputContainer: {
+        width: "100%",
+        height: 60,        
+        backgroundColor: colors.white,
+        borderRadius:10,
+        shadowColor: colors.black,
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        alignItems: "center",
+        marginVertical: 12.5,
+        paddingVertical: 10
+    },
+
+    searchInput: {
+        width: "90%",
+        height: 40,
+        borderBottomWidth: 0.5,
+        borderBottomColor: colors.borderGray
     }
 })
 
