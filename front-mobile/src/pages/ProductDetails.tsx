@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, ActivityIndicator, TouchableOpacity, Image, ScrollView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { api } from "../services";
 import { theme, text } from "../styles";
 
@@ -14,6 +15,7 @@ const ProductDetails = ({ route: { params: { id } } }) => {
         date: null,
         categories: [],
     });
+    const navigation = useNavigation();
     const [loading, setLoading] = useState(false);
 
     async function loadProductData() {
@@ -28,25 +30,31 @@ const ProductDetails = ({ route: { params: { id } } }) => {
     }, []);
 
     return (
-        <View>
-            {loading ? <ActivityIndicator size="large" /> : (            
-            <View>
-                <TouchableOpacity>
-                    <Image source={arrow} />
-                    <Text>Voltar</Text>
-                </TouchableOpacity>
-                <View> 
-                    <Image source={{ uri: product.imgUrl }}  style={{ width: 150, height:150 }}/>                     
-                </View>
-                <Text>{product.name}</Text>
-                <View>
-                    <Text>R$</Text>
-                    <Text>{product.price}</Text>    
-                </View>
-                <ScrollView>
-                    <Text>{product.description}</Text>
-                </ScrollView>                
-            </View>)}
+        <View style={theme.detailsContainer}>
+            {loading ? (
+            <ActivityIndicator size="large" />
+            ) : (            
+                <View style={theme.detailCard}>
+                    <TouchableOpacity 
+                        style={theme.goBackContainer} 
+                        onPress={() => navigation.goBack()}
+                    >
+                        <Image source={arrow} />
+                        <Text style={text.goBackText}>Voltar</Text>
+                    </TouchableOpacity>
+                    <View style={theme.productImageContainer}> 
+                        <Image source={{ uri: product.imgUrl }}
+                         style={ theme.productImage }/>                     
+                    </View>
+                    <Text style={text.productDetailsName}>{product.name}</Text>
+                    <View style={theme.priceContainer}>
+                        <Text style={text.currency}>R$</Text>
+                        <Text style={text.productPrice}>{product.price}</Text>    
+                    </View>
+                    <ScrollView style={theme.scrollTextContainer}>
+                        <Text style={text.productDescription}>{product.description}</Text>
+                    </ScrollView>                
+                </View>)}
         </View>
     )
 }
