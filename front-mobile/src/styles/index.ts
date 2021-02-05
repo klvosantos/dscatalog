@@ -28,7 +28,6 @@ const text = StyleSheet.create({
         textAlign: "center",
         marginBottom: 15,
         color: colors.darkGrey
-
     },
     primaryText: {
         fontSize: 14,
@@ -81,6 +80,10 @@ const text = StyleSheet.create({
         color: colors.darkGrey,
         textTransform: "uppercase",
         marginBottom: 50,
+    },
+
+    logoutText: {
+        color: colors.white,
     }
 })
 
@@ -113,7 +116,6 @@ const theme = StyleSheet.create({
         height: 225
     },
 
-
     textContainer: {
         paddingHorizontal: 20
     },
@@ -134,7 +136,6 @@ const theme = StyleSheet.create({
         borderBottomRightRadius: 10,
         alignItems: "center",
         justifyContent: "center"
-
     },
 
     // Product card
@@ -232,7 +233,6 @@ const theme = StyleSheet.create({
         alignItems: "center",
         justifyContent: 'flex-start',
         marginVertical: 10,
-
     },
 
     productImageContainer: {
@@ -294,18 +294,13 @@ const theme = StyleSheet.create({
    toggle: {
        margin: -40,
    } 
-    
-
-
 })
 
 const nav = StyleSheet.create({
     leftText: {
         color: colors.white,
         fontWeight: "bold",
-        marginLeft: 20,
-       
-         
+        marginLeft: 20,         
     },
 
     drawer: {
@@ -333,6 +328,17 @@ const nav = StyleSheet.create({
 
     textActive: {
         fontWeight: "bold",
+    },
+
+    logoutBtn: {
+        width: 60,
+        height: 30,
+        borderWidth: 1,
+        borderColor: colors.white,
+        borderRadius: 10,
+        alignItems: "center",
+        justifyContent: "center",
+        marginRight: 20,
     }
 })
 
