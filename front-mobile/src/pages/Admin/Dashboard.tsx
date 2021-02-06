@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import { View } from "react-native";
+import { TabBar } from "../../components";
 
-import { View, Text } from "react-native";
-import { theme } from "../../styles";
+import Categories from "./Categories";
+import Products from "./Products";
+import Users from "./Users";
 
 const Dashboard: React.FC = () => {
+    const [ screen, setScreen ] = useState("categories");
     return (
-        <View style={theme.container}>
-            <Text>Dashboard (tela temporaria)</Text>
-        
+        <View>
+            <TabBar screen={screen} setScreen={setScreen}/>
+            {screen === "products" && <Products />}
+            {screen === "categories" && <Categories />}
+            {screen === "users" && <Users />}
         </View>
     );
 };
