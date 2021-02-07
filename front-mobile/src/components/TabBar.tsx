@@ -33,15 +33,15 @@ const TabBar: React.FC<TabBarProps> = (props) => {
                 style={[tabbar.pill, screen === "categories" && tabbar.pillActive]}
                 onPress={() => changeScreen("categories")}
                 activeOpacity={0.7}            
-             >
+            >
                 <Text 
                     style={[
                         tabbar.pillText, 
                         screen === "categories" && tabbar.pillTextActive
                     ]}
-                    >
-                        Categorias 
-                    </Text>
+                >
+                    Categorias 
+                </Text>
             </TouchableOpacity>
             <TouchableOpacity 
                 style={[tabbar.pill, screen === "users" && tabbar.pillActive]}
@@ -53,9 +53,9 @@ const TabBar: React.FC<TabBarProps> = (props) => {
                         tabbar.pillText, 
                         screen === "users" && tabbar.pillTextActive
                     ]}
-                    >
-                        Usuários
-                    </Text>
+                >
+                    Usuários
+                </Text>
             </TouchableOpacity>
         </View>
     )
