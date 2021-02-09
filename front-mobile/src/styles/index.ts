@@ -1,6 +1,7 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
 const deviceWidth = Dimensions.get('window').width;
+const deviceHeight = Dimensions.get("window").height;
 
 const colors = {
     white: "#FFF",
@@ -22,6 +23,7 @@ const text = StyleSheet.create({
         textAlign: "center",
         color: colors.mediumGray
     },
+
     bold: {
         fontSize: 26,
         fontWeight: '700',
@@ -29,6 +31,7 @@ const text = StyleSheet.create({
         marginBottom: 15,
         color: colors.darkGrey
     },
+
     primaryText: {
         fontSize: 14,
         fontWeight: "bold",
@@ -103,8 +106,6 @@ const text = StyleSheet.create({
         fontWeight: "bold",
         color: colors.mediumGray,
     }
-
-
 })
 
 const theme = StyleSheet.create({
@@ -139,6 +140,7 @@ const theme = StyleSheet.create({
     textContainer: {
         paddingHorizontal: 20
     },
+
     primaryButton: {
         width: 290,
         height: 50,
@@ -148,6 +150,7 @@ const theme = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center"
     },
+
     arrowContainer: {
         width: 50,
         height: 50,
@@ -267,6 +270,7 @@ const theme = StyleSheet.create({
         width: 220,
         height: 220,
     },
+
     scrollTextContainer: {
         marginVertical: 20,
         padding: 20,
@@ -292,6 +296,7 @@ const theme = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center"
     },
+
     form: {
         marginVertical: 10,
     },
@@ -342,6 +347,85 @@ const theme = StyleSheet.create({
         justifyContent: "center",       
         borderRadius: 10,
     },
+
+    // Admin Products Form
+
+    formContainer: {
+        width: deviceWidth,
+        padding: 30,
+    },
+
+    formCard: {
+        width: "100%",
+        height: "90%",
+        backgroundColor:colors.white,
+        borderRadius: 20,
+        padding: 20,
+        shadowColor: colors.black,
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        alignItems: "center",
+        justifyContent: "space-around",
+    },
+
+    modalContainer: {
+        width: deviceWidth,
+        height: deviceHeight,
+        backgroundColor: "#00000033",
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    modalContent: {
+        width:300,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: "47%",
+        backgroundColor: colors.white,
+        borderRadius: 20,
+        padding: 20,
+        shadowColor: colors.black,
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+
+    },
+    modalItem: {
+        width: "100%",
+        backgroundColor: colors.lightGray,
+        padding: 10,
+        marginVertical: 5,
+        borderRadius: 5
+    },
+
+    formInput: {
+        width: 290,
+        height: 50,
+        borderWidth: 1,
+        borderColor: colors.mediumGray,
+        borderRadius: 10,
+        padding: 10,
+        marginVertical:15
+    },
+
+    textArea: {
+        width: "100%",
+        height: 200,
+        borderWidth: 1,
+        borderColor: colors.mediumGray,
+        borderRadius: 10,
+        padding: 10,
+        marginVertical: 15,      
+        textAlignVertical: "top"
+    }
 })
 
 const nav = StyleSheet.create({
@@ -390,7 +474,6 @@ const nav = StyleSheet.create({
     }
 })
 
-
 const tabbar = StyleSheet.create({
     container: {
         width: deviceWidth,
@@ -398,8 +481,7 @@ const tabbar = StyleSheet.create({
         backgroundColor: colors.white,
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-around",
-
+        justifyContent: "space-around"
     },
 
     pill: {
@@ -437,7 +519,6 @@ const admin = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center"
     }
-
 });
 
 export { colors, theme, text, nav, tabbar, admin };
