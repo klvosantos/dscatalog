@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { theme, text } from "../../../styles";
+import { theme, text, colors } from "../../../styles";
 import arrow from "../..//..//assets/leftArrow.png";
 
 import { View, Text, ScrollView, TouchableOpacity, Image, Modal, TextInput, ActivityIndicator } from "react-native";
@@ -78,27 +78,30 @@ const FormProduct: React.FC<FormProductProps> = (props) => {
                         <Text style={text.goBackText}>Voltar</Text>
                     </TouchableOpacity>
                     <TextInput placeholder="Nome do Produto" style={theme.formInput}/>
-                    <TouchableOpacity onPress={() => setShowCategories(!showCategories)}>
-                        <Text>
+                    <TouchableOpacity 
+                    onPress={() => setShowCategories(!showCategories)}
+                    style={theme.selectInput}
+                    >               
+                        <View >
                             {product.categories === null
-                            ? "Escolha  uma categoria"
-                            : product.categories}
-                        </Text>
+                            ? <Text style={theme.formCategoryColorNull}>Escolha  uma categoria</Text>
+                            : <Text style={theme.formCategoryColor}>{product.categories}</Text>}
+                        </View>
                     </TouchableOpacity>
                     <TextInput placeholder="Preço" style={theme.formInput}/> 
-                    <TouchableOpacity>
-                        <Text>Carregar Imagem</Text>    
+                    <TouchableOpacity activeOpacity={0.8} style={theme.uploadBtn}>
+                        <Text style={text.uploadText}>Carregar Imagem</Text>    
                     </TouchableOpacity>
-                    <Text>
+                    <Text style={text.fileSize}>
                         As imagens devem ser JPG ou PNG e não devem ultrapassar 5 mb.
                     </Text>
                     <TextInput multiline placeholder="Descrição" style={theme.textArea} />
-                    <View>
-                        <TouchableOpacity>                            
-                                <Text>Cancelar</Text>
+                    <View style={theme.buttonContainer}>
+                        <TouchableOpacity style={theme.deleteBtn}>                            
+                                <Text style={text.deleteText}>Cancelar</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity>                            
-                                <Text>Salvar</Text>
+                        <TouchableOpacity style={theme.saveBtn}>                            
+                                <Text style={text.saveText}>Salvar</Text>
                         </TouchableOpacity>                        
                     </View>
                     </ScrollView> 

@@ -13,7 +13,9 @@ const colors = {
     primary: "#407BEE",
     secondary: "#335698",
     bluePill: "#407BFF61",
-    red: "#DF5753"
+    red: "#DF5753",
+    grey: "#cecece",   
+
 }
 
 const text = StyleSheet.create({
@@ -101,10 +103,30 @@ const text = StyleSheet.create({
         color: colors.red,
     },
 
+    saveText:{
+        textTransform:"uppercase",
+        fontWeight: "bold",
+        color: colors.white,
+    },
+
     editText: {
         textTransform:"uppercase",
         fontWeight: "bold",
         color: colors.mediumGray,
+    },
+
+    uploadText: {
+        color: colors.white,
+        textTransform: "uppercase",
+        fontWeight: "bold"
+    },
+
+    fileSize: {
+        color: colors.primary,
+        fontSize: 10,
+        fontWeight: "300",
+        marginVertical: 5,
+        padding: 2
     }
 })
 
@@ -425,6 +447,43 @@ const theme = StyleSheet.create({
         padding: 10,
         marginVertical: 15,      
         textAlignVertical: "top"
+    },
+
+    selectInput:{
+        width: 290,
+        height: 50,
+        borderWidth: 1,
+        borderColor: colors.mediumGray,
+        borderRadius: 10,
+        padding: 10,
+        justifyContent: "center"        
+    },
+
+    formCategoryColorNull: {
+        color:colors.grey
+    },
+
+    formCategoryColor:{
+        color:colors.black
+    },
+
+    uploadBtn: {
+         width: "100%",
+         height: 40,
+         backgroundColor: colors.mediumGray,
+         borderRadius: 5,
+         alignItems: "center",
+         justifyContent: "center"
+    },
+
+    saveBtn:{
+        width: "48%",
+        height: 40,
+        backgroundColor: colors.primary,
+        marginVertical: 10,
+        alignItems: "center",
+        justifyContent: "center",       
+        borderRadius: 10,
     }
 })
 
