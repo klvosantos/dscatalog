@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import Toast from "react-native-tiny-toast";
 import { theme, text, colors } from "../../../styles";
 import arrow from "../..//..//assets/leftArrow.png";
 
 import { View, Text, ScrollView, TouchableOpacity, Image, Modal, TextInput, ActivityIndicator, Alert } from "react-native";
-import { getCategories } from "../../../services";
+import { createProduct, getCategories } from "../../../services";
 
 interface FormProductProps {
     setScreen: Function;
@@ -25,7 +26,12 @@ const FormProduct: React.FC<FormProductProps> = (props) => {
         categories: [],
     });
 
-    function handleSave() {        
+    function handleSave() {
+        !edit && newProduct();
+    }
+
+    async function newProduct() {        
+        setLoading(true);
         const cat = replaceCategory();
         const data= {
             ...product,
@@ -35,7 +41,13 @@ const FormProduct: React.FC<FormProductProps> = (props) => {
                 },
             ],
         };
-        console.warn(data);
+        try {
+            await createProduct(data);
+            Toast.showSuccess("Produto criado com sucesso!");
+        }catch (res) {
+            Toast.show("Erro ao salvar... ")
+        }
+        setLoading(false);        
     }
 
     function replaceCategory() {
