@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Toast from "react-native-tiny-toast";
 import { theme, text, colors } from "../../../styles";
 import arrow from "../..//..//assets/leftArrow.png";
+import { TextInputMask } from "react-native-masked-text";
 
 import { View, Text, ScrollView, TouchableOpacity, Image, Modal, TextInput, ActivityIndicator, Alert } from "react-native";
 import { createProduct, getCategories } from "../../../services";
@@ -22,7 +23,7 @@ const FormProduct: React.FC<FormProductProps> = (props) => {
         name: "",
         description: "",
         imgUrl: "",
-        price: 0,
+        price: "",
         categories: [],
     });
 
@@ -35,6 +36,7 @@ const FormProduct: React.FC<FormProductProps> = (props) => {
         const cat = replaceCategory();
         const data= {
             ...product,
+            price: getRow(),
             categories: [
                 {
                     id: cat,
@@ -62,6 +64,12 @@ const FormProduct: React.FC<FormProductProps> = (props) => {
         const res = await getCategories();
         setCategories(res.data.content);
         setLoading(false);
+    }
+
+    function getRow() {
+        const str = product.price;
+        const res = str.slice(2).replace(/\./g, "").replace(/,/g, ".");
+        return res;
     }
 
     useEffect(() => {
@@ -116,13 +124,14 @@ const FormProduct: React.FC<FormProductProps> = (props) => {
                             ? <Text style={theme.formCategoryColorNull}>Escolha  uma categoria</Text>
                             : <Text style={theme.formCategoryColor}>{product.categories}</Text>}
                         </View>
-                    </TouchableOpacity>
-                    <TextInput 
-                    placeholder="Preço" 
-                    style={theme.formInput}
-                    value={product.price}
-                    onChangeText={(e) => setProduct({... product, price: parseInt(e)} )}
-                    /> 
+                    </TouchableOpacity>                    
+                    <TextInputMask 
+                        type={"money"}
+                        placeholder="Preço"
+                        style={theme.formInput}
+                        value={product.price}
+                        onChangeText={(e) => setProduct({... product, price: e } )}                    
+                    />
                     <TouchableOpacity activeOpacity={0.8} style={theme.uploadBtn}>
                         <Text style={text.uploadText}>Carregar Imagem</Text>    
                     </TouchableOpacity>
