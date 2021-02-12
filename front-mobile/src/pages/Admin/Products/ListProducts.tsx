@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, ScrollView, TouchableOpacity, ActivityIndicator, ActivityIndicatorComponent } from "react-native";
+import { Text, ScrollView, TouchableOpacity, ActivityIndicator } from "react-native";
 import { admin, text } from "../../../styles";
 import { SearchInput, ProductCard } from "../../../components";
-import { getProducts } from "../../../services";
-import { useLinkProps } from "@react-navigation/native";
+import { deleteProduct, getProducts } from "../../../services";
 
 interface ProductProps {
     setScreen: Function;
@@ -15,6 +14,12 @@ const Products: React.FC<ProductProps> = (props) => {
     const [ loading, setLoading ] = useState(false);
 
 const { setScreen } = props;
+
+async function handleDelete(id: number) {
+    setLoading(true);    
+    const res = deleteProduct(id);
+    fillProducts();    
+}
 
 async function fillProducts() {
     setLoading(true);
@@ -29,7 +34,7 @@ useEffect(() => {
 
 const data = 
 search.length > 0
- ? products.filter(product => 
+ ? products.filter(product =>  
     product.name.toLowerCase().includes(search.toLocaleLowerCase())
     ) : products;
 
@@ -44,7 +49,7 @@ search.length > 0
                 placeholder="Nome do produto"
             />
                 { loading ? (<ActivityIndicator size="large" />) : (data.map((product ) => (
-               <ProductCard {...product} key={product.id} role="admin"/>
+               <ProductCard {...product} key={product.id} role="admin" handleDelete={(handleDelete)}/>
            )))}
         </ScrollView>
     )

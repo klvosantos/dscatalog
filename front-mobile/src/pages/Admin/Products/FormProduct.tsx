@@ -44,7 +44,7 @@ const FormProduct: React.FC<FormProductProps> = (props) => {
         try {
             await createProduct(data);
             Toast.showSuccess("Produto criado com sucesso!");
-        }catch (res) {
+        } catch (res) {
             Toast.show("Erro ao salvar... ")
         }
         setLoading(false);        
