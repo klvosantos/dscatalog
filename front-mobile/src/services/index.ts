@@ -47,3 +47,25 @@ export function getCategories() {
     const res = api.get(`/categories?direction=ASC&orderBy=name`);
     return res;
 }
+
+// Image upload
+
+export async function uploadImage(image: string) {
+    if (!image) return;
+    const authToken = await userToken();
+    let data = new FormData();
+    data.append("file", {
+        uri: image,
+        name: image        
+    });
+
+    const res = await api.post(`/products/image`, data, {
+        headers: {
+            Authorization: `Bearer ${authToken}`,
+            "Content-type": "multipart/form-data",
+        },
+    });
+     
+    return res;
+}
+ 
